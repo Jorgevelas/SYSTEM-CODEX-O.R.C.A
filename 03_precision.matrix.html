@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PRECISION_MATRIX</title>
+    <style>
+        :root {
+            --blade-blue: #00d4ff;
+            --steel: #b0c4de;
+            --speed: 12s;
+        }
+
+        body {
+            background: #050505;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            perspective: 1200px;
+        }
+
+        .orbital-system {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            transform-style: preserve-3d;
+            animation: global-spin 20s linear infinite;
+        }
+
+        .ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--steel);
+            border-radius: 50%;
+            opacity: 0.6;
+            will-change: transform;
+        }
+
+        /* Capas de complejidad */
+        .ring-1 {
+            transform: rotateY(0deg) rotateX(0deg);
+        }
+
+        .ring-2 {
+            transform: rotateY(60deg) rotateX(0deg);
+        }
+
+        .ring-3 {
+            transform: rotateY(120deg) rotateX(0deg);
+        }
+
+        .ring-4 {
+            transform: rotateX(90deg);
+            border-color: var(--blade-blue);
+            box-shadow: 0 0 20px var(--blade-blue);
+        }
+
+        /* Centro de energía */
+        .core {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, #fff, var(--blade-blue));
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes global-spin {
+            to {
+                transform: rotate3d(1, 1, 1, 360deg);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="orbital-system">
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
+        <div class="ring ring-3"></div>
+        <div class="ring ring-4"></div>
+        <div class="core"></div>
+    </div>
+
+</body>
+
+</html>

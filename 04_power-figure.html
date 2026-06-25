@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>POWER_FIGURE</title>
+    <style>
+        :root {
+            --color-a: #c0c0c0;
+            --glow-a: #e0e0ff;
+            --color-b: #ff0000;
+            --bg: #050505;
+        }
+
+        body {
+            background: var(--bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            gap: 100px;
+            overflow: hidden;
+        }
+
+        .entity {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* FIGURA 1 */
+        .core-a {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid var(--color-a);
+            box-shadow: 0 0 40px var(--glow-a);
+            animation: pulse-a 4s infinite alternate;
+        }
+
+        /* FIGURA 2 */
+        .core-b {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, var(--color-b), #0a0a0a);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            animation: rotate-b 10s linear infinite;
+        }
+
+        @keyframes pulse-a {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1.2);
+                opacity: 1;
+                border-color: white;
+            }
+        }
+
+        @keyframes rotate-b {
+            from {
+                transform: rotate(0deg) scale(1);
+            }
+
+            50% {
+                transform: rotate(180deg) scale(0.7);
+            }
+
+            to {
+                transform: rotate(360deg) scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="entity">
+        <div class="core-a"></div>
+    </div>
+
+    <div class="entity">
+        <div class="core-b"></div>
+    </div>
+
+</body>
+
+</html>

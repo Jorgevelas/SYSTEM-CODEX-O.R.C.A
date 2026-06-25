@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animación Geométrica Premium</title>
+    <style>
+        /* BASE DE DISEÑO */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #11141a; /* Gris grafito premium */
+            overflow: hidden;
+        }
+
+        /* ESCENARIO TRIDIMENSIONAL */
+        .viewport {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 800px; /* Le da profundidad a las figuras */
+        }
+
+        /* ESTRUCTURA MATRIZ */
+        .matrix {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            animation: globalOrbit 20s linear infinite;
+        }
+
+        /* CAPAS GEOMÉTRICAS (Polígonos de precisión) */
+        .layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 1.5px solid rgba(212, 175, 55, 0.25); /* Dorado champaña translúcido */
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+        }
+
+        /* Capa 1: Rombo exterior */
+        .layer-1 {
+            transform: rotateZ(45deg);
+            border-radius: 4px;
+            animation: pulseLayer1 6s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate;
+        }
+
+        /* Capa 2: Cuadrado intermedio invertido en el espacio */
+        .layer-2 {
+            border-color: rgba(255, 255, 255, 0.4); /* Blanco platino */
+            transform: rotateX(60deg) rotateY(45deg);
+            animation: pulseLayer2 6s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate;
+        }
+
+        /* Capa 3: El núcleo geométrico flotante */
+        .layer-3 {
+            top: 25%;
+            left: 25%;
+            width: 50%;
+            height: 50%;
+            border-color: #d4af37; /* Dorado sólido */
+            border-radius: 50%; /* Círculo de balance en el centro del patrón */
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            animation: pulseLayer3 3s ease-in-out infinite alternate;
+        }
+
+        /* LÍNEAS DE INTERSECCIÓN TÁCTICAS */
+        .axis {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+        }
+        .axis-h { width: 300px; height: 1px; }
+        .axis-v { width: 1px; height: 300px; background: linear-gradient(180deg, transparent, rgba(212, 175, 55, 0.15), transparent); }
+
+        /* =========================================
+           CINEMÁTICA Y ANIMACIONES (MATH & MOTION)
+           ========================================= */
+
+        /* Órbita del sistema completo para simular renderizado 3D */
+        @keyframes globalOrbit {
+            0% {
+                transform: rotateX(45deg) rotateY(0deg) rotateZ(0deg);
+            }
+            100% {
+                transform: rotateX(45deg) rotateY(360deg) rotateZ(360deg);
+            }
+        }
+
+        /* Animación Capa 1: Mutación de tamaño y torsión sutil */
+        @keyframes pulseLayer1 {
+            0% {
+                transform: rotateZ(45deg) scale(0.85);
+                border-color: rgba(212, 175, 55, 0.2);
+            }
+            100% {
+                transform: rotateZ(225deg) scale(1.1);
+                border-color: rgba(212, 175, 55, 0.6);
+            }
+        }
+
+        /* Animación Capa 2: Oscilación asíncrona en el eje Y */
+        @keyframes pulseLayer2 {
+            0% {
+                transform: rotateX(60deg) rotateY(45deg) scale(1.2);
+                border-radius: 0%;
+            }
+            100% {
+                transform: rotateX(30deg) rotateY(225deg) scale(0.8);
+                border-radius: 30%; /* Transiciona suavemente a puntas curvas */
+            }
+        }
+
+        /* Animación Capa 3: Latido del núcleo del vector */
+        @keyframes pulseLayer3 {
+            0% {
+                transform: translateZ(-20px) scale(0.9);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateZ(20px) scale(1.15);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="viewport">
+        <div class="axis axis-h"></div>
+        <div class="axis axis-v"></div>
+
+        <div class="matrix">
+            <div class="layer layer-1"></div>
+            <div class="layer layer-2"></div>
+            <div class="layer layer-3"></div>
+        </div>
+    </div>
+
+</body>
+</html>
